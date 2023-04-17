@@ -10,27 +10,31 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity()
-@Table(name = "usercomfenalco")
+@Table(name = "Movimientos")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class Movimiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idmovimiento;
 
-    private String Phone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @JoinColumn(name = "idcuenta", referencedColumnName = "idcuenta")
+    private Cuenta cuenta;
 
-    private String email;
+    private Integer numerocuentadestino;
+
+    private double monto;
+
+    private String tipomovimiento;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date createdAt;
-
-    private String status;
-    private String identificationNumber;
-
     @PrePersist
     private void onCrete(){
         createdAt = new Date();
