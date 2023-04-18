@@ -35,6 +35,12 @@ public class Bolsillo {
     @Column(nullable = true)
     private Date createdAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
+
+    private CategoriaBolsillo categoriabolsillo;
+
     @PrePersist
     private void onCrete(){
         createdAt = new Date();
