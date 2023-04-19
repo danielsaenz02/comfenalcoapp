@@ -7,10 +7,7 @@ import com.comfenalco.comfenalcoApp.service.DocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class CategoriaBolsilloController {
     public ResponseEntity<List<CategoriaBolsillo>> getAllUsers(){
         List<CategoriaBolsillo> categorias = categoriaService.getAll();
         return new ResponseEntity<List<CategoriaBolsillo>>(categorias, HttpStatus.OK);
+    }
+    @GetMapping("/listar/{idcategoria}")
+    public ResponseEntity<CategoriaBolsillo> getAllUsers(@PathVariable Long idcategoria){
+        CategoriaBolsillo categoria = categoriaService.findById(idcategoria);
+        return new ResponseEntity<CategoriaBolsillo>(categoria, HttpStatus.OK);
     }
 }
