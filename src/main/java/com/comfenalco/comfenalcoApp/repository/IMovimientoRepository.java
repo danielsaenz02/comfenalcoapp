@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IMovimientoRepository extends JpaRepository<Movimiento,Long> {
-    @Query(nativeQuery = true, value = "SELECT * FROM Movimientos where idafiliado = ?")
-    List<Movimiento> findMovimientoByIdafiliado(Long idafiliado);
+    @Query(nativeQuery = true, value = "SELECT * FROM Movimientos where idcuenta = ?")
+    List<Movimiento> findMovimientoByIdafiliado(Long idcuenta);
 }
