@@ -28,4 +28,6 @@ public class UserService {
     }
 
     public Optional<User> findByEmail (String email){ return iUserRepository.findByEmail(email);}
+    public Optional<User> findByNumeroDocumento (String numeroDocumento){ return iUserRepository.findByNumeroDocumento(numeroDocumento);}
+
 }

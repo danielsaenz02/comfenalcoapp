@@ -18,27 +18,27 @@ import java.util.Date;
 public class Afiliado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idAfiliadoBeneficiario;
+    private Long idafiliadobeneficiario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @JoinColumn(name = "idTipoAfiliacion", referencedColumnName = "idTipoAfiliacion")
+    @JoinColumn(name = "idtipoafiliacion", referencedColumnName = "idtipoafiliacion")
     private TipoAfiliacion tipoAfiliacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @JoinColumn(name = "idTipoDocumento", referencedColumnName = "idTipoDocumento")
+    @JoinColumn(name = "idtipodocumento", referencedColumnName = "idtipodocumento")
     private TipoDocumento tipoDocumento;
 
     private String nombres;
 
     private String apellidos;
 
-    private String numeroDocumentoIdentidad;
+    private String numerodocumentoidentidad;
 
 
     @Column(nullable = true)
-    private Date fechaNacimiento;
+    private Date fechanacimiento;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date createdAt;

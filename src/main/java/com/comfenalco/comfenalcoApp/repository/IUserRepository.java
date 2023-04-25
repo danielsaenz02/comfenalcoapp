@@ -13,4 +13,7 @@ public interface IUserRepository extends JpaRepository<User,Long> {
 
     @Query("SELECT u FROM User u WHERE u.email = :email")
     Optional<User> findByEmail(@Param("email") String email);
+
+    @Query(nativeQuery = true,value = "SELECT * from UserComfenalco WHERE identification_Number = ?")
+    Optional<User> findByNumeroDocumento(String identificationNumber);
 }

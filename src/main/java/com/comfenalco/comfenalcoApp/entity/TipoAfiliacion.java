@@ -17,7 +17,7 @@ public class TipoAfiliacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTipoAfiliacion;
+    private Long idtipoafiliacion;
 
     private String nombre;
 

@@ -1,9 +1,11 @@
 package com.comfenalco.comfenalcoApp.controller;
 
 
+import com.comfenalco.comfenalcoApp.entity.Afiliado;
 import com.comfenalco.comfenalcoApp.entity.User;
 import com.comfenalco.comfenalcoApp.exception.BadRequestCustom;
 import com.comfenalco.comfenalcoApp.exception.ConflictException;
+import com.comfenalco.comfenalcoApp.service.AfiliadoService;
 import com.comfenalco.comfenalcoApp.service.UserService;
 import com.comfenalco.comfenalcoApp.validator.Control;
 import com.comfenalco.comfenalcoApp.validator.UserValidator;
@@ -22,6 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AfiliadoService afiliadoService;
 
     @GetMapping("/listar")
     public ResponseEntity<List<User>> getAllUsers(){
@@ -63,6 +67,29 @@ public class UserController {
         } catch (BadRequestCustom badMessage) {
             return new ResponseEntity<>(badMessage.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/listar/{idDocumento}")
+    public ResponseEntity<?> buscarUsuario(@PathVariable String idDocumento) throws Exception {
+        try {
+            User user = userService.findByNumeroDocumento(idDocumento).orElseThrow(() ->  new BadRequestCustom("No se pudo encontrar el usuario"));
+            return new ResponseEntity<>(user, HttpStatus.OK);
+
+        } catch (BadRequestCustom badMessage) {
+            return new ResponseEntity<>(badMessage.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+    @GetMapping("/listara/{idDocumento}")
+    public ResponseEntity<?> buscarAfiliado(@PathVariable String idDocumento) throws Exception {
+        try {
+            Afiliado afiliado = afiliadoService.findByNumeroDocumento(idDocumento).orElseThrow(() ->  new BadRequestCustom("No se pudo encontrar el afiliado"));
+            return new ResponseEntity<>(afiliado, HttpStatus.OK);
+
+        } catch (BadRequestCustom badMessage) {
+            return new ResponseEntity<>(badMessage.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 

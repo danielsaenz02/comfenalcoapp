@@ -25,6 +25,8 @@ public class AfiliadoService {
     public Afiliado findById(Long id){
         return iAfiliadoRepository.findById(id).orElse(null);
     }
+    public Optional<Afiliado> findByNumeroDocumento (String numeroDocumento){ return iAfiliadoRepository.findByNumeroDocumento(numeroDocumento);}
+
 
 
 }
