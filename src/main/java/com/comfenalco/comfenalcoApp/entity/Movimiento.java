@@ -35,6 +35,13 @@ public class Movimiento {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date createdAt;
+
+    private String status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @JoinColumn(name = "idpuntoretiro", referencedColumnName = "idpuntoretiro")
+    private PuntosRetiros puntosRetiros;
     @PrePersist
     private void onCrete(){
         createdAt = new Date();
