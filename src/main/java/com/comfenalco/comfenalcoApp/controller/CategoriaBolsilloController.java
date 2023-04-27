@@ -24,7 +24,7 @@ public class CategoriaBolsilloController {
         return new ResponseEntity<List<CategoriaBolsillo>>(categorias, HttpStatus.OK);
     }
     @GetMapping("/listar/{idcategoria}")
-    public ResponseEntity<CategoriaBolsillo> getAllUsers(@PathVariable Long idcategoria){
+    public ResponseEntity<CategoriaBolsillo> getById(@PathVariable Long idcategoria){
         CategoriaBolsillo categoria = categoriaService.findById(idcategoria);
         return new ResponseEntity<CategoriaBolsillo>(categoria, HttpStatus.OK);
     }
