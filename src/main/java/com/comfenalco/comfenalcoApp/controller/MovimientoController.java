@@ -40,6 +40,17 @@ public class MovimientoController {
 
         }
     }
+    @PostMapping("/retiro/{idafiliado}")
+    public ResponseEntity<?> saveRetiro(@RequestBody Movimiento movimiento, @PathVariable Long idafiliado) throws BadRequestCustom {
+        try{
+            Movimiento newMovimiento=  movimientoService.saveMovimientoRetiro(movimiento,idafiliado);
+            return new ResponseEntity<>(newMovimiento,HttpStatus.OK);
+
+        }catch ( BadRequestCustom badRequestCustom){
+            return new ResponseEntity<>(badRequestCustom.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+    }
     @GetMapping("/listar/{idafiliado}")
     public ResponseEntity<?> findByIdAfiliado(@PathVariable Long idafiliado){
         List<Movimiento> movimientosAfiliado = movimientoService.findMovimientoByIdAfiliado(idafiliado);

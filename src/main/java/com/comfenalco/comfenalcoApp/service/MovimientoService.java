@@ -48,6 +48,25 @@ public class MovimientoService {
             throw new RuntimeException(e);
         }
     }
+    public Movimiento saveMovimientoRetiro(Movimiento movimiento, Long idafiliado) throws BadRequestCustom{
+        try{
+            Cuenta cuentaAfiliado = iCuentaRepository.findCuentaByIdafiliado(idafiliado).orElseThrow(() ->  new BadRequestCustom("La cuenta de usuario no existe "));
+            if (movimiento.getMonto() < cuentaAfiliado.getSaldo()){
+                   movimiento.setStatus("P");
+                return iMovimientoRepository.save(movimiento);
+
+            }else if (cuentaAfiliado.getSaldo() == 0){
+                throw new BadRequestCustom("No tiene sucificiente saldo para retirar.");
+
+            }else {
+                throw new BadRequestCustom("El saldo que intenta retirar es mayor al saldo de su cuenta.");
+            }
+
+
+        } catch (BadRequestCustom e) {
+            throw new RuntimeException(e);
+        }
+    }
 
         public Movimiento findById(Long id){
         return iMovimientoRepository.findById(id).orElse(null);
