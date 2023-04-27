@@ -34,6 +34,7 @@ public class MovimientoService {
             if (movimiento.getMonto() < cuentaAfiliado.getSaldo()){
                 cuentaAfiliado.setSaldo(cuentaAfiliado.getSaldo()-movimiento.getMonto());
                 cuentaDestino.setSaldo(cuentaDestino.getSaldo()+ movimiento.getMonto());
+                movimiento.setStatus("C");
                 return iMovimientoRepository.save(movimiento);
 
             }else if (cuentaAfiliado.getSaldo() == 0){
