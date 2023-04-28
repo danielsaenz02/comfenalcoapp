@@ -3,10 +3,12 @@ package com.comfenalco.comfenalcoApp.controller;
 
 import com.comfenalco.comfenalcoApp.entity.Cuenta;
 import com.comfenalco.comfenalcoApp.entity.Movimiento;
+import com.comfenalco.comfenalcoApp.entity.RetiroPendienteDTO;
 import com.comfenalco.comfenalcoApp.exception.BadRequestCustom;
 import com.comfenalco.comfenalcoApp.exception.ConflictException;
 import com.comfenalco.comfenalcoApp.service.CuentaService;
 import com.comfenalco.comfenalcoApp.service.MovimientoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,5 +57,10 @@ public class MovimientoController {
     public ResponseEntity<?> findByIdAfiliado(@PathVariable Long idafiliado){
         List<Movimiento> movimientosAfiliado = movimientoService.findMovimientoByIdAfiliado(idafiliado);
         return new ResponseEntity<List<Movimiento>>(movimientosAfiliado,HttpStatus.OK);
+    }
+    @GetMapping("/listarretiro/{idcuenta}")
+    public ResponseEntity<?> findRetiroByIdCuenta(@PathVariable Long idcuenta) throws BadRequestCustom, JsonProcessingException {
+        List<RetiroPendienteDTO> retiroPendiente = movimientoService.findRetiroByIdCuenta(idcuenta);
+        return new ResponseEntity<List<RetiroPendienteDTO>>(retiroPendiente,HttpStatus.OK);
     }
 }

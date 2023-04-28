@@ -3,6 +3,7 @@ package com.comfenalco.comfenalcoApp.service;
 
 import com.comfenalco.comfenalcoApp.entity.Cuenta;
 import com.comfenalco.comfenalcoApp.entity.Movimiento;
+import com.comfenalco.comfenalcoApp.entity.RetiroPendienteDTO;
 import com.comfenalco.comfenalcoApp.exception.BadRequestCustom;
 import com.comfenalco.comfenalcoApp.repository.ICuentaRepository;
 import com.comfenalco.comfenalcoApp.repository.IDocumentoRepository;
@@ -74,4 +75,10 @@ public class MovimientoService {
     }
 
     public List<Movimiento> findMovimientoByIdAfiliado(Long idAfiliado){ return iMovimientoRepository.findMovimientoByIdafiliado(idAfiliado);}
+
+    public List<RetiroPendienteDTO> findRetiroByIdCuenta(Long idcuenta) {
+        List<RetiroPendienteDTO> retiroPendiente = iMovimientoRepository.findRetiroPendiente(idcuenta);
+        return retiroPendiente;
+    }
+
 }
