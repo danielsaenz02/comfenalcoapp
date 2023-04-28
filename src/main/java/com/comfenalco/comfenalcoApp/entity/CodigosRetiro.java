@@ -32,4 +32,9 @@ public class CodigosRetiro {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date fechacreacion;
+
+    @PrePersist
+    private void onCrete(){
+        fechacreacion = new Date();
+    }
 }
