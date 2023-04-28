@@ -16,11 +16,14 @@ public class RetiroPendienteDTO {
     private Double monto;
     private String nombrePuntoRetiro;
 
-    public RetiroPendienteDTO(Date fechaExpiracion, String codigoVerificacion, Double monto, String nombrePuntoRetiro) {
+    private String icono;
+
+    public RetiroPendienteDTO(Date fechaExpiracion, String codigoVerificacion, Double monto, String nombrePuntoRetiro, String icono) {
         this.fechaExpiracion = fechaExpiracion;
         this.codigoVerificacion = codigoVerificacion;
         this.monto = monto;
         this.nombrePuntoRetiro = nombrePuntoRetiro;
+        this.icono = icono;
     }
 
 }

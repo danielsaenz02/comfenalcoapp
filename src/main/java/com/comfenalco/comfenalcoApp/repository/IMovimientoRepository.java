@@ -15,7 +15,7 @@ public interface IMovimientoRepository extends JpaRepository<Movimiento,Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM Movimientos where idcuenta = ? and status=''")
     List<Movimiento> findMovimientoByIdafiliado(Long idcuenta);
 
-    @Query("SELECT new com.comfenalco.comfenalcoApp.entity.RetiroPendienteDTO(cr.fechaexpiracion, cr.codigoverificacion, m.monto, pr.nombre) " +
+    @Query("SELECT new com.comfenalco.comfenalcoApp.entity.RetiroPendienteDTO(cr.fechaexpiracion, cr.codigoverificacion, m.monto, pr.nombre ,pr.icono) " +
             "FROM CodigosRetiro cr " +
             "JOIN cr.movimiento m " +
             "JOIN m.puntosRetiros pr " +
